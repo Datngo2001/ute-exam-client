@@ -2,7 +2,8 @@ import axios from 'axios'
 import queryString from 'query-string'
 
 const axiosClient = axios.create({
-    baseURL: 'https://ute-online-exam.herokuapp.com/',
+    baseURL: 'https://ute-online-exam.herokuapp.com/api/',
+    baseURL: 'http://localhost:3001/api/',
     headers: {
         'content-type': 'application/json'
     },
