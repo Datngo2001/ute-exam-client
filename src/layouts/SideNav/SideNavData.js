@@ -15,17 +15,6 @@ const navData = [
             }
         ]
     },
-    {
-        groupName: 'Book Management',
-        icon: ['fa-solid', 'fa-book'],
-        navLinks: [
-            {
-                name: 'Book return',
-                icon: ['fa-solid', 'fa-tent-arrow-turn-left'],
-                link: ''
-            }
-        ]
-    },
 ]
 
 export default navData

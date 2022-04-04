@@ -45,7 +45,7 @@ function TopNav() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideNav" aria-controls="sideNav">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link to={'/'} className="navbar-brand text-center">UTE Library</Link>
+                    <Link to={'/'} className="navbar-brand text-center">UTE Exam</Link>
                 </div>
                 {profileElement}
             </div>

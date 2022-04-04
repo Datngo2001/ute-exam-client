@@ -1,5 +1,5 @@
 {
-  "name": "libclient",
+  "name": "examclient",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
