@@ -184,7 +184,11 @@
 }
 
 @media only screen and (max-width: 991px) {
-    .container {
+    .Authentication {
+        align-items: start;
+    }
+    .authContainer {
+        margin-top: 5rem;
         max-width: 400px;
         height: 470px;
         display: flex;
@@ -208,7 +212,7 @@
     .formBox.switchActive {
         /* left: -10px; */
         top: 150px;
-        height: 380px;
+        height: 480px;
     }
 
     .loginForm {

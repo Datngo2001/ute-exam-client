@@ -1,4 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
+import { login, register } from '../../api/auth';
+import LoadingContext from '../../context/LoadingContext';
+import UserContext from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import './Authentication.css';
 
 function Login() {
@@ -19,6 +23,63 @@ function Login() {
     const handleSwitchSignUp = () => {
         formRef.current.classList.add('switchActive');
         authRef.current.classList.add('authActive');
+    };
+
+    // Login handler
+    const { setUser } = useContext(UserContext);
+    const setLoading = useContext(LoadingContext);
+    const [inputs, setInputs] = useState({});
+    const navigate = useNavigate();
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs((values) => ({ ...values, [name]: value }));
+    };
+
+    const handleLogin = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        login({
+            username: inputs.usernameLogin,
+            password: inputs.passwordLogin,
+        })
+            .then((res) => {
+                setLoading(false);
+                if (res.message === 'login') {
+                    navigate('/home');
+                    setUser(res.data);
+                }
+            })
+            .catch((err) => {
+                setLoading(false);
+            });
+    };
+    // Register handler
+    const renderNotMatch = () => {
+        if (inputs.passwordRegister !== inputs.repeatPassword) {
+            console.log('ok');
+            return <span style={{ color: 'red' }}>Password not match</span>;
+        } else {
+            return <span></span>;
+        }
+    };
+    const handleRegister = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        register({
+            username: inputs.usernameRegister,
+            password: inputs.passwordRegister,
+        })
+            .then((res) => {
+                setLoading(false);
+                if (res.message === 'signup') {
+                    handleSwitchSignIn();
+                }
+            })
+            .catch((err) => {
+                setLoading(false);
+            });
     };
 
     return (
@@ -47,20 +108,26 @@ function Login() {
                 <div ref={formRef} className="formBox">
                     {/* Login area */}
                     <div className="form loginForm">
-                        <form>
+                        <form onSubmit={handleLogin}>
                             <h3>Login</h3>
                             <input
+                                name="usernameLogin"
                                 type="text"
                                 placeholder="Username"
                                 required
                                 className="formInput"
+                                value={inputs.usernameLogin || ''}
+                                onChange={handleChange}
                             />
                             <input
+                                name="passwordLogin"
                                 type="password"
                                 placeholder="Password"
                                 required
                                 minLength="6"
                                 className="formInput"
+                                value={inputs.passwordLogin || ''}
+                                onChange={handleChange}
                             />
                             <button
                                 ref={btnLoginRef}
@@ -73,44 +140,59 @@ function Login() {
                     </div>
                     {/* Register area */}
                     <div className="form registerForm">
-                        <form>
+                        <form onSubmit={handleRegister}>
                             <h3>Register</h3>
                             <input
+                                name="firstName"
                                 type="text"
                                 placeholder="First Name"
                                 required
                                 className="formInput"
+                                value={inputs.firstName || ''}
+                                onChange={handleChange}
                             />
                             <input
+                                name="lastName"
                                 type="text"
                                 placeholder="Last Name"
                                 required
                                 className="formInput"
+                                value={inputs.lastName || ''}
+                                onChange={handleChange}
                             />
                             <input
+                                name="usernameRegister"
                                 type="text"
                                 placeholder="Username"
                                 required
                                 className="formInput"
+                                value={inputs.usernameRegister || ''}
+                                onChange={handleChange}
                             />
                             <input
+                                name="passwordRegister"
                                 type="password"
                                 placeholder="Password"
                                 required
                                 minLength="6"
                                 className="formInput"
+                                value={inputs.passwordRegister || ''}
+                                onChange={handleChange}
                             />
                             <input
+                                name="repeatPassword"
                                 type="password"
                                 placeholder="Confirm Password"
                                 required
                                 className="formInput"
+                                value={inputs.repeatPassword || ''}
+                                onChange={handleChange}
                             />
                             <div className="roleGroup">
                                 <p className="roleTitle">Role</p>
-                                <div class="form-check role">
+                                <div className="form-check role">
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="radio"
                                         id="student"
                                         checked={role == 'student'}
@@ -119,15 +201,15 @@ function Login() {
                                         }}
                                     />
                                     <label
-                                        class="form-check-label"
-                                        for="student"
+                                        className="form-check-label"
+                                        htmlFor="student"
                                     >
                                         Student
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div className="form-check">
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="radio"
                                         id="teacher"
                                         checked={role == 'teacher'}
@@ -136,13 +218,14 @@ function Login() {
                                         }}
                                     />
                                     <label
-                                        class="form-check-label"
-                                        for="teacher"
+                                        className="form-check-label"
+                                        htmlFor="teacher"
                                     >
                                         Teacher
                                     </label>
                                 </div>
                             </div>
+                            {renderNotMatch()}
                             <button
                                 ref={btnRegisterRef}
                                 type="submit"
