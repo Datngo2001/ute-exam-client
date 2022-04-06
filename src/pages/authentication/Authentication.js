@@ -6,16 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import './Authentication.css';
 
 function Login() {
-    //useState hook(s)
-    const [role, setRole] = useState('');
-    // useRef hook(s)
+    // Switch form handler: switching between Login and Register
+    const [role, setRole] = useState('student');
     // <-- For swap form 'LOGIN' and 'REGISTER' -->
     const formRef = useRef();
     const authRef = useRef();
-    // <-- For 'LOGIN' or 'REGISTER' when press ENTER -->
-    const btnLoginRef = useRef();
-    const btnRegisterRef = useRef();
-    // <-- Switch form function: 'LOGIN' <=> 'REGISTER' -->
+
     const handleSwitchSignIn = () => {
         formRef.current.classList.remove('switchActive');
         authRef.current.classList.remove('authActive');
@@ -26,7 +22,7 @@ function Login() {
     };
 
     // Login handler
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const setLoading = useContext(LoadingContext);
     const [inputs, setInputs] = useState({});
     const navigate = useNavigate();
@@ -58,7 +54,6 @@ function Login() {
     // Register handler
     const renderNotMatch = () => {
         if (inputs.passwordRegister !== inputs.repeatPassword) {
-            console.log('ok');
             return <span style={{ color: 'red' }}>Password not match</span>;
         } else {
             return <span></span>;
@@ -70,6 +65,9 @@ function Login() {
         register({
             username: inputs.usernameRegister,
             password: inputs.passwordRegister,
+            roleName: role,
+            fname: inputs.firstName,
+            lname: inputs.lastName,
         })
             .then((res) => {
                 setLoading(false);
@@ -129,11 +127,7 @@ function Login() {
                                 value={inputs.passwordLogin || ''}
                                 onChange={handleChange}
                             />
-                            <button
-                                ref={btnLoginRef}
-                                type="submit"
-                                className="btn loginBtn"
-                            >
+                            <button type="submit" className="btn loginBtn">
                                 Login
                             </button>
                         </form>
@@ -226,11 +220,7 @@ function Login() {
                                 </div>
                             </div>
                             {renderNotMatch()}
-                            <button
-                                ref={btnRegisterRef}
-                                type="submit"
-                                className="btn registerBtn"
-                            >
+                            <button type="submit" className="btn registerBtn">
                                 Register
                             </button>
                         </form>
