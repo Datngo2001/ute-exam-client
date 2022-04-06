@@ -1,0 +1,53 @@
+body {
+  background: rgb(231, 227, 214);
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: #f2edd4;
+}
+
+.profile-button {
+  background: rgb(110, 106, 93);
+  box-shadow: none;
+  border: none;
+}
+
+.profile-button:hover {
+  background: #cabf96;
+}
+
+.profile-button:focus {
+  background: #bab48a;
+  box-shadow: none;
+}
+
+.profile-button:active {
+  background: #bab68f;
+  box-shadow: none;
+}
+
+.back:hover {
+  color: #f3f3d6;
+  cursor: pointer;
+}
+
+.labels {
+  font-size: 15px;
+  text-align: left;
+  color: #787876;
+}
+
+.add-experience:hover {
+  background: #e8ebd2;
+  color: rgb(247, 249, 201);
+  cursor: pointer;
+  border: solid 1px #f5fad1;
+}
+
+h4 {
+  width: 100%;
+  color: rgb(101, 97, 85);
+  font-family: verdana;
+  font-size: 200%;
+  text-align: center;
+}
