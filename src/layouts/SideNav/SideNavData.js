@@ -5,13 +5,19 @@ const navData = [
         link: '/'
     },
     {
+        
+        name:'Google Form',
+        icon:['fa-brands','fa-google'],
+        link:'/form'
+    },
+    {
         groupName: 'System management',
         icon: ['fa-solid', 'fa-computer'],
         navLinks: [
             {
                 name: 'User Management',
                 icon: ['fa-solid', 'fa-user'],
-                link: '/asdasda/asdasd'
+                link: '/form'
             }
         ]
     },

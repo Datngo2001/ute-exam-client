@@ -13,11 +13,16 @@ import Spinner from './components/Spinner/Spinner';
 import LoadingContext from './context/LoadingContext';
 import Cookies from 'js-cookie';
 import jwt from 'jwt-decode';
-import { faHome, faUser, faComputer, faBook, faTentArrowTurnLeft } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faComputer, faBook, faTentArrowTurnLeft ,faArrowsUpDown,faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import {faGoogle} from '@fortawesome/free-brands-svg-icons'
+import DashBoard from './pages/dashboard/DashBoard';
 
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft);
+import EditForm from './components/EditForm/EditForm';
+
+
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft,faGoogle,faArrowsUpDown,faEllipsisV);
 
 function App() {
 
@@ -53,11 +58,15 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           <TopNav></TopNav>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />        
+           
             <Route path='/home' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/form' element={<DashBoard />}/>
+            <Route path='/form/edit' element={<EditForm />}/>
+            
           </Routes>
         </UserContext.Provider>
       </LoadingContext.Provider>

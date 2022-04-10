@@ -1,0 +1,25 @@
+.card__custom{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.card__custom .card__content{
+    height: 128px;
+    width: 171px;
+}
+.card__custom .card__content .card__img{
+    box-sizing:border-box;
+    
+    border-radius:2px;
+    border:0.5px solid #FFFDF7;
+    cursor: pointer;
+}
+.card__custom .card__content .card__img:hover{
+    border-color: rgb(154, 79, 224);
+}
+.card__custom .card__content .card__img img{
+    display: inline-block;
+    width: 100%;
+}
+.card__custom .card__content .card__text{
+
+}

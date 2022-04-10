@@ -1,0 +1,25 @@
+.contract__action .contract__more{
+    cursor: pointer;
+ 
+   padding-top: 8px;
+   padding-bottom: 8px;
+   padding-left: 12px;
+   padding-right: 18px;
+    transition: linear .5s;
+    border-right: 1px solid black;
+}
+.contract__action .contract__more:hover{
+   background-color: rgb(214, 207, 207);  
+    border-radius: 6px;
+}
+.contract__action .doc__contract_more svg{
+   
+    cursor: pointer; 
+    outline: none;
+    padding: 12px 18px;
+    border-radius: 24px;
+    transition:linear .2s;
+}
+.contract__action .doc__contract_more svg:hover{
+    background-color: rgb(177, 171, 171);
+}

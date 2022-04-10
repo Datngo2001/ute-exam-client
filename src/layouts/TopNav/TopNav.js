@@ -7,6 +7,7 @@ import UserContext from '../../context/UserContext';
 import { logout } from '../../api/auth'
 import LoadingContext from '../../context/LoadingContext';
 import { useNavigate } from 'react-router-dom'
+import SearchForm from '../../components/SearchForm/SearchForm';
 
 function TopNav() {
     const { user, setUser } = useContext(UserContext);
@@ -46,6 +47,7 @@ function TopNav() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <Link to={'/'} className="navbar-brand text-center">UTE Exam</Link>
+                   <SearchForm />
                 </div>
                 {profileElement}
             </div>

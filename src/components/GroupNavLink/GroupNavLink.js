@@ -20,7 +20,7 @@ function GroupNavLink(prop) {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 
