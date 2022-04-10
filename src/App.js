@@ -6,6 +6,10 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home/home';
 import Login from './pages/authentication/Authentication';
 import Profile from './pages/profile/Profile';
+import DoTest from './pages/doTest/DoTest';
+import FindTest from './pages/findTest/FindTest';
+import CreateTest from './pages/createTest/CreateTest';
+import TestList from './pages/testList/TestList';
 import UserContext from './context/UserContext';
 import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner/Spinner';
@@ -18,11 +22,14 @@ import {
     faComputer,
     faBook,
     faTentArrowTurnLeft,
+    faChalkboardTeacher,
+    faList,
+    faTextSlash
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft);
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash);
 
 function App() {
     const [user, setUser] = useState({});
@@ -61,6 +68,10 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/auth" element={<Login />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/create" element={<CreateTest />} />
+                        <Route path="/do" element={<DoTest />} />
+                        <Route path="/find" element={<FindTest />} />
+                        <Route path="/list" element={<TestList />} />
                     </Routes>
                 </UserContext.Provider>
             </LoadingContext.Provider>
