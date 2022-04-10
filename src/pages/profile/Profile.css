@@ -1,6 +1,3 @@
-body {
-  background: rgb(231, 227, 214);
-}
 .form-control:focus {
   box-shadow: none;
   border-color: #f2edd4;
