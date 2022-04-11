@@ -1,8 +1,8 @@
 import "./Profile.css";
-import React from 'react'
+
 function Profile() {
   return (
-    <div className="profile justify-content-center">
+    <div className="row justify-content-center">
       <div className="col-md-3 border-right">
         <div className="d-flex flex-column align-items-center text-center p-3 py-5">
           <img
@@ -12,17 +12,17 @@ function Profile() {
           />
           <span className="font-weight-bold">Edogaru</span>
           <span className="text-black-50">edogaru@mail.com.my</span>
-          <span> </span>
+          <span> Edit </span>
         </div>
       </div>
-      <div className="col-md-5 border-right profile_container">
+      <div className="col-md-5 border-right">
         <div className="p-3 py-5">
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="text-right"> PROFILE TEACHER </h4>
+            <h4 className="text-right">Profile Student</h4>
           </div>
           <div className="row mt-2">
             <div className="col-md-6">
-              <label className="labels">Name</label>
+              <label className="labels">FirstName</label>
               <input
                 type="text"
                 className="form-control"
@@ -40,58 +40,22 @@ function Profile() {
               />
             </div>
           </div>
-          <div className="col-md-12">
-            <label className="labels">Teacher ID:</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter ID teacher"
-              value=""
-            />
-          </div>
-          <div className="col-md-6">
-            <label className="labels">Date of birth</label>
-            <input
-              type="text"
-              className="form-control"
-              value=""
-              placeholder="Date of birth"
-            />
-          </div>
           <div className="row mt-3">
             <div className="col-md-12">
-              <label className="labels">Mobile Number</label>
+              <label className="labels">ID Student</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="enter phone number"
+                placeholder="ID Student"
                 value=""
               />
             </div>
             <div className="col-md-12">
-              <label className="labels">Home Town:</label>
+              <label className="labels">Class</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="enter Home Town"
-                value=""
-              />
-            </div>
-            <div className="col-md-12">
-              <label className="labels">Current Residence</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="enter current residence"
-                value=""
-              />
-            </div>
-            <div className="col-md-12">
-              <label className="labels">Gender</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="enter gender"
+                placeholder="Class"
                 value=""
               />
             </div>
@@ -100,16 +64,43 @@ function Profile() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="enter email "
+                placeholder="Email Student"
                 value=""
               />
             </div>
             <div className="col-md-12">
-              <label className="labels">Degree</label>
+              <label className="labels">Hometown</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Degree"
+                placeholder="Hometown"
+                value=""
+              />
+            </div>
+            <div className="col-md-12">
+              <label className="labels">Phone Number</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Phone Number"
+                value=""
+              />
+            </div>
+            <div className="col-md-12">
+              <label className="labels">Gender</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Gender"
+                value=""
+              />
+            </div>
+            <div className="col-md-12">
+              <label className="labels">Date Of Birth</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Date Of Birth"
                 value=""
               />
             </div>
@@ -120,8 +111,17 @@ function Profile() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Country"
+                placeholder="country"
                 value=""
+              />
+            </div>
+            <div className="col-md-6">
+              <label className="labels">State/Region</label>
+              <input
+                type="text"
+                className="form-control"
+                value=""
+                placeholder="state"
               />
             </div>
           </div>

@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import GroupNavLink from '../../components/GroupNavLink/GroupNavLink'
 import sideNavData from './SideNavData'
 import NavLink from '../../components/NavLink/NavLink'
+import UserContext from '../../context/UserContext'
 
 function SideNav() {
+    const { user } = useContext(UserContext);
     const groups = sideNavData
     const groupElements = groups.map((group, index) => {
-        if (group.groupName === undefined) {
+        if (group.groupName === undefined && user !== undefined && group.roles.includes(user.roleName)) {
             const navLink = group
             return <NavLink key={navLink.name} link={navLink.link} icon={navLink.icon} name={navLink.name}></NavLink>
-        } else {
+        } else if (user !== undefined && group.roles.includes(user.roleName)) {
             return <GroupNavLink key={group.groupName} groupId={index} title={group.groupName} icon={group.icon} navLinks={group.navLinks}></GroupNavLink>
         }
     })
+
     return (
         <div className="offcanvas offcanvas-start" data-bs-scroll="false" data-bs-backdrop="false" tabIndex="-1" id="sideNav" aria-labelledby="offcanvasScrollingLabel">
             <div className="offcanvas-header">

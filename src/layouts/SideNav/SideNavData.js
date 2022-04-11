@@ -2,24 +2,26 @@ const navData = [
     {
         name: 'Home',
         icon: ['fa-solid', 'fa-home'],
-        link: '/'
+        link: '/',
+        roles: ['superAdmin', 'admin', 'teacher', 'student']
     },
     {
-        
-        name:'Google Form',
-        icon:['fa-brands','fa-google'],
-        link:'/form'
-    },
-    {
-        groupName: 'System management',
-        icon: ['fa-solid', 'fa-computer'],
+        groupName: 'Teacher',
+        icon: ['fa-solid', 'fa-chalkboard-teacher'],
         navLinks: [
             {
-                name: 'User Management',
-                icon: ['fa-solid', 'fa-user'],
+                name: 'My tests',
+                icon: ['fa-solid', 'fa-list'],
                 link: '/form'
             }
-        ]
+        ],
+        roles: ['superAdmin', 'admin', 'teacher']
+    },
+    {
+        name: 'Do exam',
+        icon: ['fa-solid', 'fa-text-slash'],
+        link: '/find',
+        roles: ['superAdmin', 'admin', 'student']
     },
 ]
 

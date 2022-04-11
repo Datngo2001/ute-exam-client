@@ -1,55 +1,61 @@
 import './App.css';
-import TopNav from './layouts/TopNav/TopNav'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
-import { Route, Routes } from "react-router-dom";
-import Home from './pages/home/home'
-import Login from './pages/login/Login'
-import Register from './pages/register/Register'
-import Profile from './pages/profile/Profile'
-import UserContext from './context/UserContext'
+import TopNav from './layouts/TopNav/TopNav';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/home/home';
+import Login from './pages/authentication/Authentication';
+import Profile from './pages/profile/Profile';
+import DoTest from './pages/doTest/DoTest';
+import FindTest from './pages/findTest/FindTest';
+import DashBoardHere from './pages/dashboard/DashBoard';
+import EditForm from './components/EditForm/EditForm';
+import UserContext from './context/UserContext';
 import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner/Spinner';
 import LoadingContext from './context/LoadingContext';
 import Cookies from 'js-cookie';
 import jwt from 'jwt-decode';
-import { faHome, faUser, faComputer, faBook, faTentArrowTurnLeft ,faArrowsUpDown,faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import {faGoogle} from '@fortawesome/free-brands-svg-icons'
-import DashBoard from './pages/dashboard/DashBoard';
+import {
+  faHome,
+  faUser,
+  faComputer,
+  faBook,
+  faTentArrowTurnLeft,
+  faChalkboardTeacher,
+  faList,
+  faTextSlash
+} from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
-import EditForm from './components/EditForm/EditForm';
-
-
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft,faGoogle,faArrowsUpDown,faEllipsisV);
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash);
 
 function App() {
-
-  const [user, setUser] = useState({})
-  const [isLoading, setLoading] = useState(false)
+  const [user, setUser] = useState({});
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user.username !== undefined) {
-      return
+      return;
     }
-    const token = Cookies.get('Authorization')
+    const token = Cookies.get('Authorization');
     if (!token) {
-      return
+      return;
     }
-    const userdata = jwt(token)
+    const userdata = jwt(token);
     setUser({
       id: userdata.id,
       username: userdata.username,
-      role: userdata.role
-    })
-  }, [])
+      role: userdata.role,
+    });
+  }, []);
 
   var spinnerElement;
   if (isLoading) {
-    spinnerElement = (<Spinner></Spinner>)
+    spinnerElement = <Spinner></Spinner>;
   } else {
-    spinnerElement = null
+    spinnerElement = null;
   }
 
   return (
@@ -58,15 +64,14 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           <TopNav></TopNav>
           <Routes>
-            <Route path='/' element={<Home />} />        
-           
-            <Route path='/home' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/form' element={<DashBoard />}/>
-            <Route path='/form/edit' element={<EditForm />}/>
-            
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/auth" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/do" element={<DoTest />} />
+            <Route path="/find" element={<FindTest />} />
+            <Route path='/form' element={<DashBoardHere />} />
+            <Route path='/form/edit' element={<EditForm />} />
           </Routes>
         </UserContext.Provider>
       </LoadingContext.Provider>
