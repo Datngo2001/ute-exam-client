@@ -19,7 +19,7 @@ export default {
      }, */
     getForm(formId) {
         return axiosClient
-            .get("form/" + formId)
+            .get("tests/" + formId)
             .then(response => {
                 //  console.log(response.data);
                 return response.data;
