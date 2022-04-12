@@ -26,13 +26,14 @@ import {
   faList,
   faTextSlash,
   faArrowsUpDown,
-  faEllipsisVertical
+  faEllipsisVertical,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash,faArrowsUpDown,
-  faEllipsisVertical);
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash, faArrowsUpDown,
+  faEllipsisVertical, faCheck);
 
 function App() {
   const [user, setUser] = useState({});

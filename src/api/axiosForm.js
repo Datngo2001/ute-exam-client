@@ -25,4 +25,12 @@ export default {
                 return response.data;
             })
     },
+    getListTest() {
+        return axiosClient
+            .get("tests/")
+            .then(response => {
+                // console.log(response.data);
+                return response.data;
+            })
+    }
 };
