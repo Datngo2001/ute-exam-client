@@ -9,7 +9,7 @@ import Profile from './pages/profile/Profile';
 import DoTest from './pages/doTest/DoTest';
 import FindTest from './pages/findTest/FindTest';
 import DashBoardHere from './pages/dashboard/DashBoard';
-import EditForm from './layouts/EditForm/EditForm';
+import EditForm from './pages/EditForm/EditForm';
 import UserContext from './context/UserContext';
 import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner/Spinner';

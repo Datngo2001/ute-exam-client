@@ -1,11 +1,13 @@
-import React ,{useState,useEffect}from "react";
+import React, { useState, useEffect } from "react";
 //import QuestionHeader from './QuestionHeader';
 import { Grid } from "@material-ui/core";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import {FcRightUp} from "react-icons/fc"
+import { FcRightUp } from "react-icons/fc"
 import { Paper, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -33,40 +35,40 @@ function QuestionsTab(props) {
 
   const [formData, setFormData] = React.useState({});
   const [loadingFormData, setLoadingFormData] = React.useState(true);
-  const [formTitle,setFormTitle]=useState("United Document");
-  const [formDescription,setFormDescription]=useState("");
+  const [formTitle, setFormTitle] = useState("United Document");
+  const [formDescription, setFormDescription] = useState("");
 
 
-  useEffect(()=>{
-    if(props.formData.questions !== undefined){
+  useEffect(() => {
+    if (props.formData.questions !== undefined) {
       //console.log(props.formData.questions.length);
-      if(props.formData.questions.length === 0){
-        setQuestions([{title: "Question", options : [ "Option 1"], open: false}]);
-      } else{
+      if (props.formData.questions.length === 0) {
+        setQuestions([{ title: "Question", options: ["Option 1"], open: false }]);
+      } else {
         setQuestions(props.formData.questions)
       }
       setLoadingFormData(false)
-    } 
+    }
     setFormData(props.formData)
-  } ,[props.formData])
-  
-  function saveFormData(){
+  }, [props.formData])
+
+  function saveFormData() {
 
   }
-  function saveQuestions(){
-  
+  function saveQuestions() {
 
-    var data={
-      title:formTitle,
-      questions:questions
+
+    var data = {
+      title: formTitle,
+      questions: questions
     }
-  setQuestions(questions);
+    setQuestions(questions);
 
-  console.log("Auto saving question Nows");
- /*  console.log([questions[0].title])
-  console.log(questions[0].options[1].optionText)
-  console.log(questions[1].options.length)
-    console.log(JSON.stringify(questions[1].options[1].optionText)); */
+    console.log("Auto saving question Nows");
+    /*  console.log([questions[0].title])
+     console.log(questions[0].options[1].optionText)
+     console.log(questions[1].options.length)
+       console.log(JSON.stringify(questions[1].options[1].optionText)); */
     console.log(JSON.stringify(data))
     sendAPI(data);
 
@@ -74,21 +76,21 @@ function QuestionsTab(props) {
 
   function sendAPI(data) {
     axiosForm.createForm(data).
-    then(
-      (result) => {
-        console.log(result);
-        setQuestions(result.questions);
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        console.log(resMessage);
-      }
-    );
+      then(
+        (result) => {
+          console.log(result);
+          setQuestions(result.questions);
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          console.log(resMessage);
+        }
+      );
   }
   function addMoreQuestionField() {
     expandCloseAll(); //setting 
@@ -97,7 +99,7 @@ function QuestionsTab(props) {
       ...questions,
       {
         title: "Question",
-        options: [ "Option 1"],
+        options: ["Option 1"],
         open: true,
       },
     ]);
@@ -108,12 +110,12 @@ function QuestionsTab(props) {
     expandCloseAll();
     const myNewOptions = [];
     qs[i].options.forEach((opn) => {
-    
-      var opNew=opn
-       
+
+      var opNew = opn
+
       myNewOptions.push(opNew)
     });
-   
+
     var newQuestion = {
       title: qs[i].title,
       options: myNewOptions,
@@ -136,29 +138,27 @@ function QuestionsTab(props) {
 
     setQuestions(optionsOfQuestion);
   }
-  function addAnswer(i,index){
+  function addAnswer(i, index) {
     var answerOfQuestion = [...questions];
-    
-      answerOfQuestion[i].answer= index;
-    
+
+    answerOfQuestion[i].answer = index;
+
     setQuestions(answerOfQuestion)
   }
-  function doneAnswer(i){
+  function doneAnswer(i) {
     var answerOfQuestion = [...questions];
-    
-      answerOfQuestion[i].answer= !answerOfQuestion[i].answer;
-    
+
+    answerOfQuestion[i].answer = !answerOfQuestion[i].answer;
+
     setQuestions(answerOfQuestion)
   }
-  function setOptionAnswer(answer,qnumber){
-    var Questions=[...questions];
-    Questions[qnumber].answer=answer;
-    setQuestions(Questions);  
-    console.log(qnumber+" "+answer);
+
+  function setOptionAnswer(answer, qnumber) {
+    var Questions = [...questions];
+    Questions[qnumber].answer = answer;
+    setQuestions(Questions);
+    console.log(qnumber + " " + answer);
   }
-
- 
-
 
 
   function handleQuestionValue(text, i) {
@@ -337,7 +337,7 @@ function QuestionsTab(props) {
                           maxRows={20}
                           multiline={true}
                           value={ques.title}
-                          
+
                           variant="filled"
                           onChange={(e) => {
                             handleQuestionValue(e.target.value, i);
@@ -345,7 +345,7 @@ function QuestionsTab(props) {
                         />
                       </div>
 
-                      
+
 
                       <div style={{ width: "100%" }}>
                         {ques.options.map((op, j) => (
@@ -412,24 +412,38 @@ function QuestionsTab(props) {
                       )}
 
                       <br></br>
+                      <Select
+                        fullWidth={true}
+                        placeholder="Answer"
+                        style={{ marginTop: "5px" }}
+                        onChange={(e) => {
+                          setOptionAnswer(e.target.value, i);
+                        }}
+                      >
+                        {
+                          ques.options.map((option, index) => {
+                            return <MenuItem value={index}>{option}</MenuItem>
+                          })
+                        }
+                      </Select>
                       <br></br>
 
                       <Typography variant="body2" style={{ color: "grey" }}>
                         Maximum 4 Options
                       </Typography>
-                      
+
                     </div>
                   </AccordionDetails>
 
                   <Divider />
 
                   <AccordionActions>
-                 
-                        
-                        <Button size="small"  onClick={()=>{addAnswer(i)}} style={{textTransform: 'none',color:"#4285f4",fontSize:"13px",fontWeight:"600"}}>       <FcRightUp style={{border:"2px solid #4285f4", padding:"2px",marginRight:"8px"}} /> Answer key</Button>
-                          
-                      
-                       {/**
+
+
+                    <Button size="small" onClick={() => { addAnswer(i) }} style={{ textTransform: 'none', color: "#4285f4", fontSize: "13px", fontWeight: "600" }}>       <FcRightUp style={{ border: "2px solid #4285f4", padding: "2px", marginRight: "8px" }} /> Answer key</Button>
+
+
+                    {/**
                        Answer Key Action Form
                        
                         */}
@@ -471,7 +485,7 @@ function QuestionsTab(props) {
             </div>
           </div>
         )}
-       
+
       </Draggable>
     ));
   }
@@ -503,35 +517,35 @@ function QuestionsTab(props) {
                   >
                     <Typography
                       variant="h4"
-                    
+
                       style={{
                         fontFamily: "sans-serif Roboto",
                         marginBottom: "15px",
                         width: "100%",
-                      
+
                       }}
                     >
-                    
+
                       <TextField
                         id="name_Title_Form"
                         type="text"
                         fullWidth={true}
-                       
+
                         placeholder="Unitied Document"
-                       defaultValue={"Unitied Document"}
-                       onChange={(e)=>{setFormTitle(e.target.value)}}
+                        defaultValue={"Unitied Document"}
+                        onChange={(e) => { setFormTitle(e.target.value) }}
                       />
                     </Typography>
                     <Typography variant="subtitle1"
-                     style={{
-                      
+                      style={{
+
                         width: "100%"
                       }}
-                      >
+                    >
                       <TextField
                         fullWidth={true}
                         placeholder="Form Description"
-                        onChange={(e)=>{setFormDescription(e.target.value)}}
+                        onChange={(e) => { setFormDescription(e.target.value) }}
                       />
                     </Typography>
                   </div>
