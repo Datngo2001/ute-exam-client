@@ -9,7 +9,7 @@ import Profile from './pages/profile/Profile';
 import DoTest from './pages/doTest/DoTest';
 import FindTest from './pages/findTest/FindTest';
 import DashBoardHere from './pages/dashboard/DashBoard';
-import EditForm from './components/EditForm/EditForm';
+import EditForm from './layouts/EditForm/EditForm';
 import UserContext from './context/UserContext';
 import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner/Spinner';
@@ -24,12 +24,15 @@ import {
   faTentArrowTurnLeft,
   faChalkboardTeacher,
   faList,
-  faTextSlash
+  faTextSlash,
+  faArrowsUpDown,
+  faEllipsisVertical
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash);
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash,faArrowsUpDown,
+  faEllipsisVertical);
 
 function App() {
   const [user, setUser] = useState({});

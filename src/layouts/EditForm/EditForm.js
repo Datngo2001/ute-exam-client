@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,7 +31,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 
 
-import QuestionsTab from '../QuestionForm/QuestionsTab'
+import QuestionsTab from '../../components/QuestionForm/QuestionsTab';
 
 
 
@@ -67,13 +67,13 @@ const useStyles = makeStyles((theme) => ({
 
 function EditForm(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = useState(0);
+  const [open, setOpen] = useState(false);
   
-
-  const [formDeatils, setFormDetails] = React.useState({});
-  const [openOfAlert, setOpenOfAlert] = React.useState(false);
-
+  const [formID,setFormID]=useState("");
+  const [formDeatils, setFormDetails] = useState({});
+  const [openOfAlert, setOpenOfAlert] =useState(false);
+  //create edit
  
 
   const handleClickOfAlert = () => {
@@ -137,9 +137,7 @@ function EditForm(props) {
                     <IconButton aria-label="search">
                         <VisibilityIcon />
                     </IconButton>
-                    <IconButton aria-label="search">
-                        <SettingsIcon />
-                    </IconButton>
+                   
                     
                 
                     </Toolbar>
