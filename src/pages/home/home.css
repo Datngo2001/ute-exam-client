@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 .image {
-  background-image: url("https://i.pinimg.com/564x/21/10/09/2110092991b7029ab9c13cd1624e359f.jpg");
+  background-image: url("./../../img/home.jpg");
   background-position: left;
   background-attachment: fixed;
   background-repeat: no-repeat;
