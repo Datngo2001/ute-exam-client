@@ -1,14 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { Grid } from "@material-ui/core";
 import { Paper, Typography } from "@material-ui/core";
 import { useLocation } from 'react-router-dom';
 
-function DoTest() {
+
+import axiosForm from '../../api/axiosForm'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import mydata from './Fake.json'
+function DoTest(props) {
 
   var selectedAnswer;
 
   const { state } = useLocation()
-  const test = JSON.parse(state.content)
+  const test =JSON.parse(state.content);
+  const [isSubmitted, setIsSubmitted] = React.useState(false)
+  const [value, setValue] = React.useState('');
+
+  
+ 
+
+ 
+ 
 
   return (
     <div
@@ -47,7 +70,86 @@ function DoTest() {
                       {test.title}
                     </Typography>
                   </div>
-                </Paper>
+
+              
+
+                </Paper>   
+                    
+                 
+
+                 {!isSubmitted ? (
+                   <div>
+                   <Grid>
+                      
+                      { test.questions.map((ques, i)=>(
+                        <div key={i}>
+                          <br></br>
+                        <Paper>
+                          <div>
+                            <div style={{display: 'flex',
+                                       flexDirection:'column', 
+                                       alignItems:'flex-start', 
+                                       marginLeft: '6px', 
+                                       paddingTop: '15px', 
+                                       paddingBottom: '15px'}}>
+                                <Typography variant="subtitle1" style={{marginLeft: '10px'}}>{i+1}. {ques.title}</Typography>
+                               
+                                
+                                
+                                  <div>
+    
+                                  <RadioGroup aria-label="quiz" name="quiz"  onChange={(e)=>{console.log(e.target.value+"radio"+i)}}>
+    
+                                    {ques.options.map((op, j)=>(
+                                      <div key={j}>
+                                        <div style={{display: 'flex', marginLeft: '7px'}}>
+                                           <FormControlLabel   control={<Radio />} label={op} />
+                  
+    
+                                        </div>
+    
+                                      
+                                        
+                                      </div>
+                                      ))}  
+                                    </RadioGroup>
+    
+                                  </div>
+                            </div>
+                          </div>  
+                        </Paper>  
+                        </div>
+                      ))}
+                      </Grid>   
+                      <Grid>
+                    <br></br>
+                    <div style={{display: 'flex'}}>
+                      <Button variant="contained" color="primary" >
+                        Submit
+                      </Button>
+                    </div>
+                    <br></br>
+
+                    <br></br>
+
+                  </Grid>
+                   </div>
+                 ):
+                 (
+                   <div>
+                     <Typography variant="body1">Form submitted</Typography>
+                     <Typography variant="body2">Thanks for submiting form</Typography>
+                     
+
+                     <Button >Submit another response</Button>
+                   </div>
+                 )
+                }
+
+                  
+
+                 
+               
               </div>
             </div>
           </Grid>

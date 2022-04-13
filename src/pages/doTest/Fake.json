@@ -1,0 +1,23 @@
+{
+    "title":"ten form",
+    "questions":[
+        {
+            "title":"He dieu hanh la gi",
+            "type":"radio",
+            "options":[
+                "a das","b das","c das","d das"
+            ]
+            ,
+            "answer":0
+        },
+        {
+            "title":"He la gi",
+            "type":"radio",
+            "options":[
+                "a das","b das","c das","d das"
+            ]
+            ,
+            "answer":0
+        }
+    ]
+}
