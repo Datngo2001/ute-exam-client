@@ -17,33 +17,23 @@ import LoadingContext from './context/LoadingContext';
 import Cookies from 'js-cookie';
 import jwt from 'jwt-decode';
 import {
-    faHome,
-    faUser,
-    faComputer,
-    faBook,
-    faTentArrowTurnLeft,
-    faChalkboardTeacher,
-    faList,
-    faTextSlash,
-    faArrowsUpDown,
-    faEllipsisVertical,
+  faHome,
+  faUser,
+  faComputer,
+  faBook,
+  faTentArrowTurnLeft,
+  faChalkboardTeacher,
+  faList,
+  faTextSlash,
+  faArrowsUpDown,
+  faEllipsisVertical,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-library.add(
-    fab,
-    faHome,
-    faUser,
-    faComputer,
-    faBook,
-    faTentArrowTurnLeft,
-    faChalkboardTeacher,
-    faList,
-    faTextSlash,
-    faArrowsUpDown,
-    faEllipsisVertical,
-);
+library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash, faArrowsUpDown,
+  faEllipsisVertical, faCheck);
 
 function App() {
     const [user, setUser] = useState({});
