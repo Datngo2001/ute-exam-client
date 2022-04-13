@@ -17,70 +17,81 @@ import LoadingContext from './context/LoadingContext';
 import Cookies from 'js-cookie';
 import jwt from 'jwt-decode';
 import {
-  faHome,
-  faUser,
-  faComputer,
-  faBook,
-  faTentArrowTurnLeft,
-  faChalkboardTeacher,
-  faList,
-  faTextSlash,
-  faArrowsUpDown,
-  faEllipsisVertical
+    faHome,
+    faUser,
+    faComputer,
+    faBook,
+    faTentArrowTurnLeft,
+    faChalkboardTeacher,
+    faList,
+    faTextSlash,
+    faArrowsUpDown,
+    faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
-library.add(fab, faHome, faUser, faComputer, faBook, faTentArrowTurnLeft, faChalkboardTeacher, faList, faTextSlash,faArrowsUpDown,
-  faEllipsisVertical);
+library.add(
+    fab,
+    faHome,
+    faUser,
+    faComputer,
+    faBook,
+    faTentArrowTurnLeft,
+    faChalkboardTeacher,
+    faList,
+    faTextSlash,
+    faArrowsUpDown,
+    faEllipsisVertical,
+);
 
 function App() {
-  const [user, setUser] = useState({});
-  const [isLoading, setLoading] = useState(false);
+    const [user, setUser] = useState({});
+    const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (user.username !== undefined) {
-      return;
+    useEffect(() => {
+        if (user.username !== undefined) {
+            return;
+        }
+        const token = Cookies.get('Authorization');
+        if (!token) {
+            return;
+        }
+        const userdata = jwt(token);
+        setUser({
+            id: userdata.id,
+            username: userdata.username,
+            role: userdata.role,
+        });
+    }, []);
+
+    var spinnerElement;
+    if (isLoading) {
+        spinnerElement = <Spinner></Spinner>;
+    } else {
+        spinnerElement = null;
     }
-    const token = Cookies.get('Authorization');
-    if (!token) {
-      return;
-    }
-    const userdata = jwt(token);
-    setUser({
-      id: userdata.id,
-      username: userdata.username,
-      role: userdata.role,
-    });
-  }, []);
 
-  var spinnerElement;
-  if (isLoading) {
-    spinnerElement = <Spinner></Spinner>;
-  } else {
-    spinnerElement = null;
-  }
-
-  return (
-    <div className="App d-block">
-      <LoadingContext.Provider value={setLoading}>
-        <UserContext.Provider value={{ user, setUser }}>
-          <TopNav></TopNav>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/auth" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/do" element={<DoTest />} />
-            <Route path="/find" element={<FindTest />} />
-            <Route path='/form' element={<DashBoardHere />} />
-            <Route path='/form/edit' element={<EditForm />} />
-          </Routes>
-        </UserContext.Provider>
-      </LoadingContext.Provider>
-      {spinnerElement}
-    </div>
-  );
+    return (
+        <div className="App d-block">
+            <LoadingContext.Provider value={setLoading}>
+                <UserContext.Provider value={{ user, setUser }}>
+                    <TopNav></TopNav>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/auth" element={<Login />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/do/:testId" element={<DoTest />} />
+                        <Route path="/find" element={<FindTest />} />
+                        <Route path="/form" element={<DashBoardHere />} />
+                        <Route path="/form/edit" element={<EditForm />} />
+                    </Routes>
+                </UserContext.Provider>
+            </LoadingContext.Provider>
+            {spinnerElement}
+        </div>
+    );
 }
 
 export default App;
